@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+
+:root {
+  --primary: #D9879B;
+  --primary-dark: #B84F70;
+
+  --background: #FCE7ED;
+  --surface: #FFF8F4;
+
+  --pink-light: #F4B8C8;
+  --pink-deep: #B84F70;
+
+  --heading: #493139;
+  --text: #493139;
+  --border: #EADDE0;
+}
+
+/* bg-[#B0886A] */
