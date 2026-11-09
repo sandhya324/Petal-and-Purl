@@ -27,6 +27,7 @@ const Contact = () => {
 
   return (
     <div>
+
       <div className="heading p-10 text-center ">
         <h1 className="text-2xl text-[#C9828F] font-semibold max-[930px]:text-xl">♡ Stay Cozy</h1>
 

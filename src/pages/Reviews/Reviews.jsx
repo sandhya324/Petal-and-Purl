@@ -1,4 +1,3 @@
-import "./Reviews.css";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 
 const Reviews = ({ className = "" }) => {

@@ -1,6 +1,6 @@
 import { SlBasket } from "react-icons/sl";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../Context/CartContext";
 
 const CardButton = () => {
   const { cartItems } = useCart();

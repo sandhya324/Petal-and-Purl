@@ -2,17 +2,15 @@ import { Link } from "react-router-dom";
 import { FaTrashAlt, FaArrowLeft } from "react-icons/fa";
 import { FiShoppingBag } from "react-icons/fi";
 
-import { assets } from "../../assets/assets";
-import { useCart } from "../../context/CartContext";
+import { GrSecure } from "react-icons/gr";
+import { FaRegHeart } from "react-icons/fa";
+import { MdOutlineEco } from "react-icons/md";
 
+import { assets } from "../../assets/assets";
+import { useCart } from "../../Context/CartContext";
 
 const Cart = () => {
-  const {
-    cartItems,
-    updateQuantity,
-    removeFromCart,
-    subtotal,
-  } = useCart();
+  const { cartItems, updateQuantity, removeFromCart, subtotal } = useCart();
 
   const shipping = subtotal >= 999 || subtotal === 0 ? 0 : 60;
   const total = subtotal + shipping;
@@ -91,9 +89,7 @@ const Cart = () => {
                 <div className="flex items-center justify-between gap-4 sm:flex-col sm:items-end">
                   <div className="flex items-center overflow-hidden rounded-full border border-[#E7D8CE]">
                     <button
-                      onClick={() =>
-                        updateQuantity(item.id, item.quantity - 1)
-                      }
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
                       disabled={item.quantity <= 1}
                       className="px-3 py-2 text-[#9F5B69] transition hover:bg-[#F5E3E6] disabled:opacity-40"
                       aria-label={`Decrease ${item.name} quantity`}
@@ -106,9 +102,7 @@ const Cart = () => {
                     </span>
 
                     <button
-                      onClick={() =>
-                        updateQuantity(item.id, item.quantity + 1)
-                      }
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
                       disabled={item.quantity >= item.stock}
                       className="px-3 py-2 text-[#9F5B69] transition hover:bg-[#F5E3E6] disabled:opacity-40"
                       aria-label={`Increase ${item.name} quantity`}
@@ -163,15 +157,14 @@ const Cart = () => {
 
               {subtotal > 0 && subtotal < 999 && (
                 <p className="rounded-lg bg-[#F8F0E8] p-3 text-xs leading-5 text-[#8F654F]">
-                  Add ₹{(999 - subtotal).toLocaleString("en-IN")} more to get free shipping!
+                  Add ₹{(999 - subtotal).toLocaleString("en-IN")} more to get
+                  free shipping!
                 </p>
               )}
 
               <div className="border-t border-dashed border-[#D8C9BE] pt-5">
                 <div className="flex justify-between gap-3">
-                  <span className="font-semibold text-[#493139]">
-                    Total
-                  </span>
+                  <span className="font-semibold text-[#493139]">Total</span>
 
                   <span className="text-2xl font-semibold text-[#9F5B69]">
                     ₹{total.toLocaleString("en-IN")}
@@ -187,10 +180,27 @@ const Cart = () => {
               Proceed to Checkout →
             </Link>
 
-            <div className="mt-6 space-y-3 text-sm text-[#746966]">
-              <p>♡ Carefully handmade with love</p>
-              <p>♧ Secure checkout</p>
-              <p>♡ Thoughtfully packed for you</p>
+            <div className="mt-8 space-y-5 text-sm text-[#746966]">
+              <div className="flex flex-row gap-2 items-center">
+                <span className="text-[#9F5B69] text-lg font-medium">
+                  <GrSecure />
+                </span>
+                <p className="">Secure Checkout</p>
+              </div>
+
+              <div className="flex flex-row gap-2 items-center">
+                <span className="text-[#9F5B69] text-lg font-medium">
+                  <FaRegHeart />
+                </span>
+                <p className="">Made with Love</p>
+              </div>
+
+              <div className="flex flex-row gap-2 items-center">
+                <span className="text-[#9F5B69] text-lg font-medium">
+                  <MdOutlineEco />
+                </span>
+                <p className="">Eco-Friendly Yarn</p>
+              </div>
             </div>
           </div>
         </div>

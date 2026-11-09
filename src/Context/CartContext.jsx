@@ -3,7 +3,6 @@ import { createContext, useContext, useState } from "react";
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-
   const [cartItems, setCartItems] = useState([]);
 
   const addToCart = (product, quantity = 1) => {
@@ -17,7 +16,7 @@ export const CartProvider = ({ children }) => {
                 ...item,
                 quantity: Math.min(item.quantity + quantity, item.stock),
               }
-            : item
+            : item,
         );
       }
 
@@ -33,8 +32,8 @@ export const CartProvider = ({ children }) => {
       prevItems.map((item) =>
         item.id === id
           ? { ...item, quantity: Math.max(1, Math.min(quantity, item.stock)) }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
@@ -42,14 +41,11 @@ export const CartProvider = ({ children }) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  const cartCount = cartItems.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const subtotal = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
-    0
+    0,
   );
 
   return (

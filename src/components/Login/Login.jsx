@@ -95,7 +95,7 @@ const Login = ({ setShowLogin, currState, setLoginState }) => {
 
             <button
               // style={{ backgroundImage: `url(${assets.wallpaper_2})` }}
-              className="bg-[#4A3835] text-[white] mx-2 rounded-full px-6 py-1.5 hover:bg-[#9F5B69] transition-transform duration-300 ease-out hover:-translate-y-1 border-1 border-[#BFAEA5]"
+              className="bg-[#B0886A] text-[white] mx-2 rounded-full px-6 py-1.5 hover:bg-[#9F5B69] transition-transform duration-300 ease-out hover:-translate-y-1 border-1 border-[#BFAEA5]"
               type="submit"
             >
               {currState === "login" ? "Login" : "Register"}
