@@ -1,7 +1,7 @@
 import { assets } from "../../assets/assets";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getProducts } from "../../api"
+import { getProducts } from "../../api";
 
 // Product Card Component
 function Product(product) {
@@ -17,7 +17,6 @@ function Product(product) {
                    hover:-translate-y-2 hover:shadow-xl
                    hover:border-[#C9828F]"
       >
-
         {/* Product Image */}
         <div className="overflow-hidden rounded-xl">
           <img
@@ -65,16 +64,13 @@ function Product(product) {
         >
           View Details ♡
         </div>
-
       </div>
     </Link>
   );
 }
 
-
 // Main Collections Component
-const Collections = () => {
-
+const Collections = ({ homePage = false }) => {
   // All products fetched from MongoDB
   const [products, setProducts] = useState([]);
 
@@ -90,14 +86,10 @@ const Collections = () => {
   // Error state
   const [error, setError] = useState("");
 
-
   // Fetch products when component loads
   useEffect(() => {
-
     const fetchProducts = async () => {
-
       try {
-
         setLoading(true);
         setError("");
 
@@ -109,25 +101,17 @@ const Collections = () => {
 
         // Initially display all products
         setFilteredProducts(data);
-
       } catch (error) {
-
         console.error("Error fetching products:", error);
 
         setError("Unable to load products. Please try again.");
-
       } finally {
-
         setLoading(false);
-
       }
-
     };
 
     fetchProducts();
-
   }, []);
-
 
   // Category List
   const categories = [
@@ -138,36 +122,25 @@ const Collections = () => {
     "Keychains",
   ];
 
-
   // Category Filter Function
   const handleCategoryClick = (category) => {
-
     setActiveCategory(category);
 
     if (category === "All Products") {
-
       setFilteredProducts(products);
-
     } else {
-
       const filtered = products.filter(
-        (product) => product.category === category
+        (product) => product.category === category,
       );
 
       setFilteredProducts(filtered);
-
     }
-
   };
 
-
   return (
-
     <div className="w-full">
-
       {/* Heading */}
-      <div className="heading p-10 max-[600px]:p-5 text-center">
-
+      <div className="heading p-5 text-center">
         <h1 className="text-2xl text-[#C9828F] font-semibold">
           Our Collections
         </h1>
@@ -176,16 +149,22 @@ const Collections = () => {
           className="text-[#4A3835] font-semibold text-5xl
                      max-[600px]:text-3xl py-5 font-[Allura]"
         >
-          Lovingly Crafted, Just For You ♡
+          {homePage
+            ? "Our Most Loved Handmade Creations ♡"
+            : "Lovingly Crafted, Just For You ♡"}
         </p>
 
         <p className="text-sm leading-7 text-[#746966] max-w-2xl mx-auto">
-          Every piece is handmade with premium yarn and overflowing love.
-          Browse our cozy collection of crochet treasures.
+          Every piece is handmade with premium yarn and overflowing love. Browse
+          our cozy collection of crochet treasures.
         </p>
-
       </div>
 
+      {homePage && (
+        <div className="view-more flex justify-center items-center text-[#C9828F] font-semibold text-lg cursor-pointer hover:text-[#9F5B69] transition duration-300">
+          <Link to="/collections">View All →</Link>
+        </div>
+      )}
 
       {/* Products Section */}
       <div
@@ -195,56 +174,49 @@ const Collections = () => {
                    max-[900px]:items-center
                    max-[600px]:px-4"
       >
-
         {/* Categories */}
-        <div
-          className="bg-[#F8F5F0] mt-4 flex flex-col w-fit h-fit
+        {!homePage && (
+          <div
+            className="bg-[#F8F5F0] mt-4 flex flex-col w-fit h-fit
                      min-w-44 p-5 rounded-2xl shadow-md
                      border border-[#EAD9D5]
                      max-[900px]:w-full"
-        >
-
-          <p
-            className="text-[#4A3835] font-semibold text-2xl py-3
+          >
+            <p
+              className="text-[#4A3835] font-semibold text-2xl py-3
                        max-[900px]:text-center"
-          >
-            Categories
-          </p>
+            >
+              Categories
+            </p>
 
-          <div
-            className="flex flex-col gap-3 max-[900px]:flex-row
+            <div
+              className="flex flex-col gap-3 max-[900px]:flex-row
                        max-[900px]:flex-wrap max-[900px]:justify-center"
-          >
-
-            {categories.map((category) => (
-
-              <button
-                key={category}
-                onClick={() => handleCategoryClick(category)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium
+            >
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => handleCategoryClick(category)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium
                             transition-all duration-300
                             ${
                               activeCategory === category
                                 ? "bg-[#9F5B69] text-white shadow-md"
                                 : "bg-[#C9828F] text-white hover:bg-[#A66B7A]"
                             }`}
-              >
-                {category}
-              </button>
-
-            ))}
-
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
-
-        </div>
-
+        )}
 
         {/* Product List */}
         <div
           className="product-list flex flex-wrap justify-center
                      gap-4 flex-1 mt-4"
         >
-
           {/* Loading */}
           {loading && (
             <p className="text-[#746966] text-center py-10">
@@ -252,47 +224,29 @@ const Collections = () => {
             </p>
           )}
 
-
           {/* Error */}
           {!loading && error && (
-            <p className="text-red-500 text-center py-10">
-              {error}
-            </p>
+            <p className="text-red-500 text-center py-10">{error}</p>
           )}
-
 
           {/* Products */}
-          {!loading && !error && filteredProducts.length > 0 && (
-
-            filteredProducts.map((product) => (
-
-              <Product
-                key={product._id}
-                {...product}
-              />
-
-            ))
-
-          )}
-
+          {!loading &&
+            !error &&
+            filteredProducts.length > 0 &&
+            (homePage ? filteredProducts.slice(0, 4) : filteredProducts).map(
+              (product) => <Product key={product._id} {...product} />,
+            )}
 
           {/* No Products */}
           {!loading && !error && filteredProducts.length === 0 && (
-
             <p className="text-[#746966] text-center py-10">
               No products found.
             </p>
-
           )}
-
         </div>
-
       </div>
-
     </div>
-
   );
-
 };
 
 export default Collections;

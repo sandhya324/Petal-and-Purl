@@ -1,9 +1,11 @@
 import { assets } from "../../assets/assets";
+
 import Reviews from "../Reviews/Reviews";
 import Contact from "../Contact/Contact";
-import OurStory from "../OurStory/OurStory";
 
-import { Link } from "react-router-dom";
+import OurStory from "../OurStory/OurStory";
+import Collections from "../Collections/Collections";
+
 
 const Home = () => {
   return (
@@ -55,180 +57,9 @@ const Home = () => {
       </div>
 
       {/* ------------------------------------collections-------------------------------------------- */}
+
       <div className="border-b-2 border-dotted border-[#CFA3AA]">
-        <div className="heading p-10 text-center ">
-          <h1 className="text-2xl text-[#C9828F] font-semibold">
-            Our Collections
-          </h1>
-
-          <p className="pb-0 mb-0 text-[#4A3835] font-semibold  cursive text-5xl py-5 font-[Allura]">
-            Lovingly Crafted, Just For You ♡
-          </p>
-          <p className="pt-0 mt-0 text-sm leading-7 text-[#746966] ">
-            Every piece is handmade with premium yarn and overflowing love.
-            Browse our cozy collection of crochet treasures.
-          </p>
-        </div>
-
-        <div className="view-more flex justify-center items-center text-[#C9828F] font-semibold text-lg cursor-pointer hover:text-[#9F5B69] transition duration-300">
-          <Link to="/collections">View All →</Link>
-        </div>
-
-        <div className="projuct-list flex flex-wrap gap-6 justify-center my-6">
-          <div
-            className="card group bg-[#F8F5F0] border border-[#EAD9D5]
-                      shadow-md rounded-2xl p-4 h-full
-                      transition-all duration-300
-                      hover:-translate-y-2 hover:shadow-xl
-                      hover:border-[#C9828F]"
-          >
-            <div className="overflow-hidden rounded-xl">
-              <img
-                src={assets.img_2}
-                className="card-image w-64 h-54 object-cover
-                       transition-transform duration-300
-                       group-hover:scale-105"
-              />
-            </div>
-            <p className="text-xs text-[#9F5B69] font-medium mt-4">Bouquets</p>
-
-            <h2 className="text-lg font-bold text-[#4A3835] mt-1">
-              Crochet Flower Bouquet{" "}
-            </h2>
-
-            <p className="text-sm text-[#746966] mt-2">
-              <strong>Material:</strong> Cotton Yarn{" "}
-            </p>
-
-            <p className="text-lg font-semibold text-[#9F5B69] mt-2">₹1299</p>
-
-            <p className="text-xs text-[#746966] mt-1">12 pieces available</p>
-
-            <div
-              className="border-t border-[#EAD9D5] mt-4 pt-3
-                        text-center text-sm font-medium text-[#9F5B69]
-                        group-hover:text-[#A66B7A]"
-            >
-              View Details ♡
-            </div>
-          </div>
-
-          <div
-            className="card group bg-[#F8F5F0] border border-[#EAD9D5]
-                      shadow-md rounded-2xl p-4 h-full
-                      transition-all duration-300
-                      hover:-translate-y-2 hover:shadow-xl
-                      hover:border-[#C9828F]"
-          >
-            <div className="overflow-hidden rounded-xl">
-              <img
-                src={assets.img_3}
-                className="card-image w-64 h-50 object-cover
-                       transition-transform duration-300
-                       group-hover:scale-105"
-              />
-            </div>
-
-            <p className="text-xs text-[#9F5B69] font-medium mt-4">Bouquets</p>
-
-            <h2 className="text-lg font-bold text-[#4A3835] mt-2">
-              Pink Rose Bouquet{" "}
-            </h2>
-
-            <p className="text-sm text-[#746966]">
-              <strong>Material:</strong> Cotton Yarn{" "}
-            </p>
-
-            <p className="text-lg font-semibold text-[#9F5B69] mt-2">₹799</p>
-            <p className="text-xs text-[#746966] mt-1">8 pieces available</p>
-
-            <div
-              className="border-t border-[#EAD9D5] mt-4 pt-3
-                        text-center text-sm font-medium text-[#9F5B69]
-                        group-hover:text-[#A66B7A]"
-            >
-              View Details ♡
-            </div>
-          </div>
-
-          <div
-            className="card group bg-[#F8F5F0] border border-[#EAD9D5]
-                      shadow-md rounded-2xl p-4 h-full
-                      transition-all duration-300
-                      hover:-translate-y-2 hover:shadow-xl
-                      hover:border-[#C9828F]"
-          >
-            <div className="overflow-hidden rounded-xl">
-              <img
-                src={assets.img_5}
-                className="card-image w-64 h-50 object-cover
-                       transition-transform duration-300
-                       group-hover:scale-105"
-              />
-            </div>
-            <p className="text-xs text-[#9F5B69] font-medium mt-4">
-              Home Decor
-            </p>
-
-            <h2 className="text-lg font-bold text-[#4A3835] mt-1">
-              Crochet Heart Coasters{" "}
-            </h2>
-
-            <p className="text-sm text-[#746966]  mt-2">
-              <strong>Material:</strong> Acrylic Yarn{" "}
-            </p>
-
-            <p className="text-lg font-semibold text-[#9F5B69] mt-2">₹499</p>
-
-            <p className="text-xs text-[#746966] mt-1">20 pieces available</p>
-
-            <div
-              className="border-t border-[#EAD9D5] mt-4 pt-3
-                        text-center text-sm font-medium text-[#9F5B69]
-                        group-hover:text-[#A66B7A]"
-            >
-              View Details ♡
-            </div>
-          </div>
-
-          <div
-            className="card group bg-[#F8F5F0] border border-[#EAD9D5]
-                      shadow-md rounded-2xl p-4 h-full
-                      transition-all duration-300
-                      hover:-translate-y-2 hover:shadow-xl
-                      hover:border-[#C9828F]"
-          >
-            <div className="overflow-hidden rounded-xl">
-              <img
-                src={assets.img_16}
-                className="card-image w-64 h-50 object-cover
-                       transition-transform duration-300
-                       group-hover:scale-105"
-              />
-            </div>
-            <p className="text-xs text-[#9F5B69] font-medium mt-4">Toys</p>
-
-            <h2 className="text-lg font-bold text-[#4A3835] mt-1">
-              Cute Crochet Fox Plushie{" "}
-            </h2>
-
-            <p className="text-sm text-[#746966]  mt-2">
-              <strong>Material:</strong> Soft Yarn
-            </p>
-
-            <p className="text-lg font-semibold text-[#9F5B69] mt-2">₹899</p>
-
-            <p className="text-xs text-[#746966] mt-1">10 pieces available</p>
-
-            <div
-              className="border-t border-[#EAD9D5] mt-4 pt-3
-                        text-center text-sm font-medium text-[#9F5B69]
-                        group-hover:text-[#A66B7A]"
-            >
-              View Details ♡
-            </div>
-          </div>
-        </div>
+        <Collections homePage={true} />
       </div>
 
       <OurStory className="pb-0 mb-0" />

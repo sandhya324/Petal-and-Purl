@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
+import { useWishlist } from "../../Context/WishlistContext";
 import { useCart } from "../../Context/CartContext";
+
 import { assets } from "../../assets/assets";
 import { getProductById } from "../../api";
 
@@ -30,6 +32,10 @@ const ProductDetails = () => {
 
     // Cart context
     const { addToCart } = useCart();
+
+    // Wishlist context
+    const { toggleWishlist,isInWishlist} = useWishlist();
+    const isWishlisted = product ? isInWishlist(product._id) : false;
 
     // Description tabs
     const [showData, setShowData] = useState(true);
@@ -386,9 +392,22 @@ const ProductDetails = () => {
                             </button>
 
 
-                            <button className="w-12 rounded-full border border-[#E3D8D0] flex items-center justify-center text-[#9F5B69] hover:bg-[#F5E3E6]">
-                                <FaHeart />
-                            </button>
+                           <button
+    type="button"
+    onClick={() => toggleWishlist(product)}
+    aria-label={
+        isWishlisted
+            ? "Remove from wishlist"
+            : "Add to wishlist"
+    }
+    className="w-12 rounded-full border border-[#E3D8D0] flex items-center justify-center text-[#9F5B69] hover:bg-[#F5E3E6]"
+>
+    {isWishlisted ? (
+        <FaHeart className="text-[#B84F70]" />
+    ) : (
+        <FaRegHeart />
+    )}
+</button>
 
                         </div>
 

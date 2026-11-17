@@ -18,6 +18,7 @@ import Reviews from "./pages/Reviews/Reviews";
 import Contact from "./pages/Contact/Contact";
 
 import ProductTest from "./ProductTest";
+import { WishlistProvider } from "./Context/WishlistContext";
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -26,34 +27,36 @@ const App = () => {
   return (
     <div>
       <CartProvider>
-        <BrowserRouter>
-          <Navbar setShowLogin={setShowLogin} setLoginState={setLoginState} />
+        <WishlistProvider>
+          <BrowserRouter>
+            <Navbar setShowLogin={setShowLogin} setLoginState={setLoginState} />
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/collections" element={<Collections />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/ourstory" element={<OurStory />} />
-            <Route path="/reviews" element={<Reviews />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/cart" element={<Cart />} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/collections" element={<Collections />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/ourstory" element={<OurStory />} />
+              <Route path="/reviews" element={<Reviews />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/cart" element={<Cart />} />
 
-            {/* Temporary backend connection test */}
-            <Route path="/test-api" element={<ProductTest />} />
-          </Routes>
+              {/* Temporary backend connection test */}
+              <Route path="/test-api" element={<ProductTest />} />
+            </Routes>
 
-          <Footer />
-          <CartButton />
-          <ScrollTop />
+            <Footer />
+            <CartButton />
+            <ScrollTop />
 
-          {showLogin && (
-            <Login
-              setShowLogin={setShowLogin}
-              currState={loginState}
-              setLoginState={setLoginState}
-            />
-          )}
-        </BrowserRouter>
+            {showLogin && (
+              <Login
+                setShowLogin={setShowLogin}
+                currState={loginState}
+                setLoginState={setLoginState}
+              />
+            )}
+          </BrowserRouter>
+        </WishlistProvider>
       </CartProvider>
     </div>
   );

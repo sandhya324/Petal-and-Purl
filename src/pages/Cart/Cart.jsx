@@ -10,10 +10,11 @@ import { assets } from "../../assets/assets";
 import { useCart } from "../../Context/CartContext";
 
 const Cart = () => {
-  const { cartItems, updateQuantity, removeFromCart, subtotal } = useCart();
+  const { cartItems, updateQuantity, removeFromCart, cartTotal } = useCart();
+  
 
-  const shipping = subtotal >= 999 || subtotal === 0 ? 0 : 60;
-  const total = subtotal + shipping;
+  const shipping = cartTotal >= 999 || cartTotal === 0 ? 0 : 60;
+  const total = cartTotal + shipping;
 
   if (cartItems.length === 0) {
     return (
@@ -21,7 +22,7 @@ const Cart = () => {
         <FiShoppingBag className="text-4xl text-[#C9828F] mb-5" />
 
         <h1 className="text-3xl font-semibold text-[#493139] font-[Allura] cursive">
-          Your basket is waiting for a little love ♡
+          Your basket is waiting for a little love ♡ 
         </h1>
 
         <p className="text-[#746966] mt-3">
@@ -59,7 +60,7 @@ const Cart = () => {
           <div className="space-y-5 lg:col-span-2">
             {cartItems.map((item) => (
               <div
-                key={item.id}
+                key={item._id}
                 className="flex flex-col gap-5 rounded-2xl border border-[#E7D8CE] bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:p-6"
               >
                 <img
@@ -89,7 +90,7 @@ const Cart = () => {
                 <div className="flex items-center justify-between gap-4 sm:flex-col sm:items-end">
                   <div className="flex items-center overflow-hidden rounded-full border border-[#E7D8CE]">
                     <button
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      onClick={() => updateQuantity(item._id, item.quantity - 1)}
                       disabled={item.quantity <= 1}
                       className="px-3 py-2 text-[#9F5B69] transition hover:bg-[#F5E3E6] disabled:opacity-40"
                       aria-label={`Decrease ${item.name} quantity`}
@@ -102,7 +103,7 @@ const Cart = () => {
                     </span>
 
                     <button
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      onClick={() => updateQuantity(item._id, item.quantity + 1)}
                       disabled={item.quantity >= item.stock}
                       className="px-3 py-2 text-[#9F5B69] transition hover:bg-[#F5E3E6] disabled:opacity-40"
                       aria-label={`Increase ${item.name} quantity`}
@@ -116,7 +117,7 @@ const Cart = () => {
                   </p>
 
                   <button
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={() => removeFromCart(item._id)}
                     className="flex items-center gap-2 text-sm text-[#9F5B69] transition hover:text-[#493139]"
                   >
                     <FaTrashAlt />
@@ -144,7 +145,7 @@ const Cart = () => {
               <div className="flex justify-between gap-3 text-[#746966]">
                 <span>Subtotal</span>
                 <span className="font-medium text-[#493139]">
-                  ₹{subtotal.toLocaleString("en-IN")}
+                  ₹{cartTotal.toLocaleString("en-IN")}
                 </span>
               </div>
 
@@ -155,9 +156,9 @@ const Cart = () => {
                 </span>
               </div>
 
-              {subtotal > 0 && subtotal < 999 && (
+              {cartTotal > 0 && cartTotal < 999 && (
                 <p className="rounded-lg bg-[#F8F0E8] p-3 text-xs leading-5 text-[#8F654F]">
-                  Add ₹{(999 - subtotal).toLocaleString("en-IN")} more to get
+                  Add ₹{(999 - cartTotal ).toLocaleString("en-IN")} more to get
                   free shipping!
                 </p>
               )}
