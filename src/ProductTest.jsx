@@ -51,6 +51,12 @@ function ProductTest() {
         <div key={product._id}>
           <h3>{product.name}</h3>
           <p>Price: ₹{product.price}</p>
+
+          {product.stock > 0 ? (
+            <p style={{color: "green"}}>In Stock</p>
+          ) : 
+          (<p style={{color: "red"}}>Out of Stock</p>)}
+      
           <p>Stock: {product.stock}</p>
           <p>Category: {product.category}</p>
         </div>

@@ -13,21 +13,19 @@ import img_10 from './img_10.jpg';
 import img_11 from './img_11.jpg';
 import img_12 from './img_12.jpg';
 import img_13 from './img_13.png';
+import img_14 from './img_14.jpg';
+import img_15 from './img_15.jpg';
 import img_16 from './img_16.jpg';
+import img_18 from './img_18.jpg';
 
 
 import ribbon from './ribbon.png'
 import story_img from './story_img.png'
 
-import wallpaper_1 from './wallpaper_1.jpg';
 import wallpaper_2 from './wallpaper_2.jpg';
 import wallpaper_3 from './wallpaper_3.jpg';
-import wallpaper_4 from './wallpaper_4.jpg';
-import wallpaper_5 from './wallpaper_5.jpg';
-import wallpaper_6 from './wallpaper_6.jpg';
-import wallpaper_7 from './wallpaper_7.jpg';
 import wallpaper_8 from './wallpaper_8.png';
-import wallpaper_9 from './wallpaper_9.jpg';
+
 
 export const assets ={
 
@@ -47,19 +45,15 @@ export const assets ={
     img_11,
     img_12,
     img_13,
+    img_14,
+    img_15,
     img_16,
+    img_18,
 
     ribbon,
     story_img,
 
-    
-    wallpaper_1,
     wallpaper_2,
     wallpaper_3,
-    wallpaper_4,
-    wallpaper_5,
-    wallpaper_6,
-    wallpaper_7,
-    wallpaper_8,
-    wallpaper_9
+    wallpaper_8
 };
