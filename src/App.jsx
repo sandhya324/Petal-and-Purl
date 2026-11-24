@@ -19,6 +19,8 @@ import Contact from "./pages/Contact/Contact";
 
 import ProductTest from "./ProductTest";
 import { WishlistProvider } from "./Context/WishlistContext";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import UserDashboard from "./pages/UserDashboard/UserDashboard";
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -42,6 +44,8 @@ const App = () => {
 
               {/* Temporary backend connection test */}
               <Route path="/test-api" element={<ProductTest />} />
+
+              <Route path="/user-dashboard" element={<ProtectedRoute><UserDashboard /></ProtectedRoute>} />
             </Routes>
 
             <Footer />
