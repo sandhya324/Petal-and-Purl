@@ -21,6 +21,7 @@ export async function loginUser(email, password) {
         }
     );
 
+    
     const data = await response.json();
 
     if (!response.ok) {
@@ -58,20 +59,22 @@ export async function getProductById(id) {
 
 
 //Customer Registration
-export async function registerUser(userData){
+export async function registerUser(name, email, password){
 
     const response = await fetch(
         `${API_URL}/api/auth/register`,
         {
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
 
-            body: JSON.stringify(userData)
-        }
-    );
+            body: JSON.stringify({
+                name: name, 
+                email: email,
+                password: password
+            })
+        });
 
     const data = await response.json();
 

@@ -1,56 +1,194 @@
 import { useNavigate } from "react-router-dom";
+import {
+  Package,
+  Heart,
+  ShoppingBag,
+  User,
+  LogOut,
+  ArrowRight,
+  Flower2,
+  Sparkles
+} from "lucide-react";
 
 function UserDashboard() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const user = JSON.parse(
+    localStorage.getItem("user") || "null"
+  );
 
-    const user = JSON.parse(
-        localStorage.getItem("user") || "null"
-    );
+  const dashboardItems = [
+    {
+      title: "My Orders",
+      description: "Track and manage your purchases.",
+      icon: Package,
+      path: "/my-orders",
+      color: "bg-[#F5E3E6]",
+    },
+    {
+      title: "My Wishlist",
+      description: "Your favourite handmade creations.",
+      icon: Heart,
+      path: "/wishlist",
+      color: "bg-[#F9E9E2]",
+    },
+    {
+      title: "My Cart",
+      description: "Your lovely picks are waiting.",
+      icon: ShoppingBag,
+      path: "/cart",
+      color: "bg-[#F1E8DF]",
+    },
+    {
+      title: "My Profile",
+      description: "Manage your personal information.",
+      icon: User,
+      path: "/profile",
+      color: "bg-[#F5E3E6]",
+    },
+  ];
 
-    const handleLogout = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
 
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
+    navigate("/", { replace: true });
+  };
 
-        navigate("/login", { replace: true });
-    };
+  return (
+    <div className="min-h-screen bg-[#FFF8F4] py-12 px-5 md:px-10">
 
-    return (
-        <div>
+      <div className="max-w-6xl mx-auto">
 
-            <h1>Welcome to Petal & Purl!</h1>
+        {/* Welcome Section */}
+        <div className="relative overflow-hidden rounded-3xl bg-[#F5E3E6] px-7 py-12 md:px-14 md:py-16 mb-10">
 
-            <h2>
-                Hello, {user?.name || "Customer"} ❤️
-            </h2>
+          <div className="absolute -right-10 -top-12 w-64 h-64 rounded-full bg-white/30" />
 
-            <p>Welcome to your personal dashboard.</p>
+          <div className="relative z-10">
 
-            <div>
-                <button onClick={() => navigate("/my-orders")}>
-                    My Orders
-                </button>
-
-                <button onClick={() => navigate("/wishlist")}>
-                    My Wishlist
-                </button>
-
-                <button onClick={() => navigate("/cart")}>
-                    My Cart
-                </button>
-
-                <button onClick={() => navigate("/profile")}>
-                    My Profile
-                </button>
-
-                <button onClick={handleLogout}>
-                    Logout
-                </button>
+            <div className="flex items-center gap-2 text-[#9F5B69] mb-4">
+              <Flower2 size={20} />
+              <span className="text-sm font-medium tracking-[0.2em] uppercase">
+                Your little happy place
+              </span>
             </div>
 
+            <h1 className="text-3xl md:text-5xl font-semibold text-[#4A3835] mb-4">
+              Welcome to Petal & Purl!
+            </h1>
+
+            <h2 className="text-xl md:text-2xl text-[#9F5B69] mb-3">
+              Hello, {user?.name || "Customer"} ❤️
+            </h2>
+
+            <p className="text-[#746966] max-w-xl leading-relaxed">
+              We're happy to have you here. Explore your account,
+              keep track of your orders and find all your favourite
+              handmade treasures in one place.
+            </p>
+
+          </div>
+
+          <Sparkles
+            className="absolute right-12 bottom-10 text-[#C9828F]/60"
+            size={70}
+          />
+
         </div>
-    );
+
+        {/* Dashboard Heading */}
+        <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-3 mb-7">
+
+          <div>
+            <p className="text-[#C9828F] text-sm tracking-widest uppercase mb-2">
+              Account overview
+            </p>
+
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#4A3835]">
+              Your Dashboard
+            </h2>
+
+            <p className="text-[#746966] mt-2">
+              Everything you need, all in one place.
+            </p>
+          </div>
+
+        </div>
+
+        {/* Dashboard Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          {dashboardItems.map((item) => {
+
+            const Icon = item.icon;
+
+            return (
+              <button
+                key={item.title}
+                onClick={() => navigate(item.path)}
+                className="group text-left bg-white rounded-2xl p-7 border border-[#F1E1DB] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              >
+
+                <div className={`${item.color} w-14 h-14 rounded-2xl flex items-center justify-center mb-6`}>
+                  <Icon size={26} className="text-[#9F5B69]" />
+                </div>
+
+                <h3 className="text-lg font-semibold text-[#4A3835] mb-2">
+                  {item.title}
+                </h3>
+
+                <p className="text-sm text-[#746966] leading-relaxed mb-5">
+                  {item.description}
+                </p>
+
+                <div className="flex items-center gap-2 text-[#B0886A] text-sm font-medium">
+                  Explore
+                  <ArrowRight
+                    size={16}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </div>
+
+              </button>
+            );
+          })}
+
+        </div>
+
+        {/* Account Footer */}
+        <div className="mt-12 bg-white rounded-2xl border border-[#F1E1DB] p-6 flex flex-col sm:flex-row justify-between items-center gap-5">
+
+          <div>
+            <h3 className="text-[#4A3835] font-semibold">
+              Need a fresh start?
+            </h3>
+
+            <p className="text-sm text-[#746966] mt-1">
+              You can safely sign out of your account here.
+            </p>
+          </div>
+
+          <button
+            onClick={handleLogout}
+            className="flex items-center justify-center gap-2 bg-[#9F5B69] text-white px-7 py-3 rounded-full hover:bg-[#824654] transition-colors duration-300"
+          >
+            <LogOut size={18} />
+            Logout
+          </button>
+
+        </div>
+
+        {/* Bottom Message */}
+        <div className="text-center mt-12">
+          <p className="text-[#B0886A] font-[Allura] text-3xl">
+            Little things, lovingly looped.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  );
 }
 
 export default UserDashboard;
