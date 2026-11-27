@@ -4,13 +4,14 @@ import {
   Heart,
   ShoppingBag,
   User,
-  LogOut,
   ArrowRight,
-  Flower2,
-  Sparkles
+  Flower2
 } from "lucide-react";
 
+import { assets } from "../../assets/assets";
+
 function UserDashboard() {
+
   const navigate = useNavigate();
 
   const user = JSON.parse(
@@ -56,14 +57,14 @@ function UserDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF8F4] py-12 px-5 md:px-10">
+    <div className="min-h-screen py-12 px-5 md:px-10">
 
       <div className="max-w-6xl mx-auto">
 
         {/* Welcome Section */}
-        <div className="relative overflow-hidden rounded-3xl bg-[#F5E3E6] px-7 py-12 md:px-14 md:py-16 mb-10">
+        <div className="relative overflow-hidden rounded-3xl bg-[#FFF8F4]  px-7 py-12 md:px-14 md:py-16 mb-10 border-2 border-dashed border-[#CFA3AA] flex">
 
-          <div className="absolute -right-10 -top-12 w-64 h-64 rounded-full bg-white/30" />
+          <div className="absolute right-20 w-70 h-70 rounded-full bg-[#F5E3E6] " />
 
           <div className="relative z-10">
 
@@ -90,10 +91,9 @@ function UserDashboard() {
 
           </div>
 
-          <Sparkles
-            className="absolute right-12 bottom-10 text-[#C9828F]/60"
-            size={70}
-          />
+          <div className="w-90 object-contain z-5 ">
+            <img src={assets.dashboard} alt="" />
+          </div>
 
         </div>
 
@@ -117,7 +117,7 @@ function UserDashboard() {
         </div>
 
         {/* Dashboard Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ">
 
           {dashboardItems.map((item) => {
 
@@ -156,28 +156,6 @@ function UserDashboard() {
 
         </div>
 
-        {/* Account Footer */}
-        <div className="mt-12 bg-white rounded-2xl border border-[#F1E1DB] p-6 flex flex-col sm:flex-row justify-between items-center gap-5">
-
-          <div>
-            <h3 className="text-[#4A3835] font-semibold">
-              Need a fresh start?
-            </h3>
-
-            <p className="text-sm text-[#746966] mt-1">
-              You can safely sign out of your account here.
-            </p>
-          </div>
-
-          <button
-            onClick={handleLogout}
-            className="flex items-center justify-center gap-2 bg-[#9F5B69] text-white px-7 py-3 rounded-full hover:bg-[#824654] transition-colors duration-300"
-          >
-            <LogOut size={18} />
-            Logout
-          </button>
-
-        </div>
 
         {/* Bottom Message */}
         <div className="text-center mt-12">

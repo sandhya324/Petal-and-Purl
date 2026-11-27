@@ -1,13 +1,23 @@
 import "./Navbar.css";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate} from "react-router-dom";
 import { useState } from "react";
 
 import { assets } from "../../assets/assets";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross1 } from "react-icons/rx";
 
-const Navbar = ({ setShowLogin, setLoginState }) => {
+const Navbar = ({ setShowLogin, setLoginState, user, setUser }) => {
   const [showNav, setShowNav] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () =>{
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    setUser(null);
+    navigate("/");
+  };
 
   return (
     <div>
@@ -44,7 +54,6 @@ const Navbar = ({ setShowLogin, setLoginState }) => {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-
           className={` flex gap-20 justify-between items-center 
            max-[1116px]:flex-col 
            max-[1116px]:gap-4
@@ -79,27 +88,47 @@ const Navbar = ({ setShowLogin, setLoginState }) => {
           </div>
 
           <div className=" text-[#B84F70] font-semibold max-[1116px]:flex max-[1116px]:justify-center max-[1116px]:pt-6">
-            <button
-              onClick={() => {
-                setShowLogin(true);
-                setLoginState("login");
-              }}
-              style={{ backgroundImage: `url(${assets.wallpaper_2})` }}
-              className="bg-cover bg-no-repeat bg-center mx-2 rounded-full px-6 py-1.5 hover:text-[#9F5B69] transition-transform duration-300 ease-out hover:-translate-y-1 border-1 border-[#BFAEA5]"
-            >
-              Login
-            </button>
+            {user ? (
+              <>
+                 <Link to="/user-dashboard"
+                style={{backgroundImage: `url(${assets.wallpaper_2})`}}
+                className="bg-cover bg-no-repeat bg-center mx-2 rounded-full px-6 py-1.5 hover:text-[#9F5B69] transition-transform duration-300 ease-out hover:-translate-y-1 border-1 border-[#BFAEA5]"
+                >
+                  Dashboard
+                </Link>
+                
+                <button onClick={handleLogout}
+                style={{backgroundImage: `url(${assets.wallpaper_2})`}}
+                className="bg-cover bg-no-repeat bg-center mx-2 rounded-full px-6 py-1.5 hover:text-[#9F5B69] transition-transform duration-300 ease-out hover:-translate-y-1 border-1 border-[#BFAEA5]"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={() => {
+                    setShowLogin(true);
+                    setLoginState("login");
+                  }}
+                  style={{ backgroundImage: `url(${assets.wallpaper_2})` }}
+                  className="bg-cover bg-no-repeat bg-center mx-2 rounded-full px-6 py-1.5 hover:text-[#9F5B69] transition-transform duration-300 ease-out hover:-translate-y-1 border-1 border-[#BFAEA5]"
+                >
+                  Login
+                </button>
 
-            <button
-              onClick={() => {
-                setShowLogin(true);
-                setLoginState("register");
-              }}
-              style={{ backgroundImage: `url(${assets.wallpaper_2})` }}
-              className="bg-cover bg-no-repeat bg-center mx-2 rounded-full px-6 py-1.5 hover:text-[#9F5B69] transition-transform duration-300 ease-out hover:-translate-y-1 border-1 border-[#BFAEA5]"
-            >
-              Register
-            </button>
+                <button
+                  onClick={() => {
+                    setShowLogin(true);
+                    setLoginState("register");
+                  }}
+                  style={{ backgroundImage: `url(${assets.wallpaper_2})` }}
+                  className="bg-cover bg-no-repeat bg-center mx-2 rounded-full px-6 py-1.5 hover:text-[#9F5B69] transition-transform duration-300 ease-out hover:-translate-y-1 border-1 border-[#BFAEA5]"
+                >
+                  Register
+                </button>
+              </>
+            )}
           </div>
         </div>
 

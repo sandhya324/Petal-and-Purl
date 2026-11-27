@@ -1,4 +1,3 @@
-import "./Footer.css";
 import { Link } from "react-router-dom";
 
 import { FaInstagram } from "react-icons/fa";

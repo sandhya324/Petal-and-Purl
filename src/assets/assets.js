@@ -21,6 +21,7 @@ import img_18 from './img_18.jpg';
 
 import ribbon from './ribbon.png'
 import story_img from './story_img.png'
+import dashboard from './dash-board.png'
 
 import wallpaper_2 from './wallpaper_2.jpg';
 import wallpaper_3 from './wallpaper_3.jpg';
@@ -52,6 +53,7 @@ export const assets ={
 
     ribbon,
     story_img,
+    dashboard,
 
     wallpaper_2,
     wallpaper_3,

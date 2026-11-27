@@ -1,9 +1,8 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser, registerUser } from "../../api";
 
-const Login = ({ setShowLogin, currState, setLoginState }) => {
+const Login = ({ setShowLogin, currState, setLoginState, setUser }) => {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -50,6 +49,8 @@ const Login = ({ setShowLogin, currState, setLoginState }) => {
       // Save authentication details
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
+
+      setUser(data.user);
 
       // Clear input fields
       resetForm();

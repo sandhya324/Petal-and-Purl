@@ -1,6 +1,5 @@
 const API_URL = "http://localhost:5000";
 
-
 //---------- Login API -----------------
 
 export async function loginUser(email, password) {

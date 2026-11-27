@@ -26,12 +26,22 @@ const App = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [loginState, setLoginState] = useState("login");
 
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+
   return (
     <div>
       <CartProvider>
         <WishlistProvider>
           <BrowserRouter>
-            <Navbar setShowLogin={setShowLogin} setLoginState={setLoginState} />
+            <Navbar
+              setShowLogin={setShowLogin}
+              setLoginState={setLoginState}
+              user={user}
+              setUser={setUser}
+            />
 
             <Routes>
               <Route path="/" element={<Home />} />
@@ -45,7 +55,14 @@ const App = () => {
               {/* Temporary backend connection test */}
               <Route path="/test-api" element={<ProductTest />} />
 
-              <Route path="/user-dashboard" element={<ProtectedRoute><UserDashboard /></ProtectedRoute>} />
+              <Route
+                path="/user-dashboard"
+                element={
+                  <ProtectedRoute>
+                    <UserDashboard />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
 
             <Footer />
@@ -57,6 +74,7 @@ const App = () => {
                 setShowLogin={setShowLogin}
                 currState={loginState}
                 setLoginState={setLoginState}
+                setUser={setUser}
               />
             )}
           </BrowserRouter>
